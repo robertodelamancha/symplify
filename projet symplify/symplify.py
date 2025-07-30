@@ -1,8 +1,8 @@
 # 📘 Notebok Colab - Vulgarisation CR Endoscopie & Imagerie
 
 # Étape 1 : Installer les bibliothèques nécessaires (si ce n'est pas déjà fait)
-!pip install openai
-!pip install streamlit
+#!pip install openai
+#!pip install streamlit
 
 # Étape 2 : Importer les bibliothèques
 import openai

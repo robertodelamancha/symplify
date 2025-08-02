@@ -21,22 +21,16 @@ client = OpenAI(api_key = st.secrets["OPENAI_API_KEY"]) # 🔒 Remplacez par vot
 
 # Étape 4 : Fonction de génération du résumé avec GPT
 
-with st.sidebar:
-    st.markdown("## ⚙️ Paramètres")
-    type_cr = st.selectbox("Type de compte rendu :", ["Endoscopie digestive", "Imagerie médicale"])
-    type_lang = st.selectbox("Langue de vulgarisation :", ["Français", "anglais", "Arabe"])
-
 def get_instruction(langue):
     if langue == "Anglais":
         return "Then, translate the explanation into clear, simple English suitable for a patient."
     elif langue == "Espagnol":
-        return "Luego, traduce la explicación al español claro y comprensible para un paciente."
+        return "ثم ترجم الشرح إلى العربية المبسطة والواضحة والمناسبة للمريض."
     else:
         return ""  # Français = pas de traduction
 
-traduction = get_instruction(type_langue)
-
-def vulgariser_texte(texte_brut, contexte):
+def vulgariser_texte(texte_brut, contexte,langue):
+    traduction = get_instruction(langue)
     system_prompt = (
         "Tu es un assistant médical expert en gastro-entérologie et en radiologie."
         " Ton objectif est de vulgariser un compte rendu médical technique pour le rendre clair, compréhensible et rassurant pour un patient."
@@ -58,8 +52,17 @@ def vulgariser_texte(texte_brut, contexte):
 # 🎨 Interface Streamlit
 st.title("🧪 Vulgarisation de comptes rendus médicaux")
 
-
-
+with st.sidebar:
+    st.markdown("## ⚙️ Paramètres")
+    type_cr = st.selectbox("Type de compte rendu :", ["Endoscopie digestive", "Imagerie médicale"])
+    
+ langue_options = {
+        "Français": "Français",
+        "English": "Anglais",
+        "العربية": "Arabe"
+    }
+    langue_affichee = st.selectbox("Langue de vulgarisation :", list(langue_options.keys()))
+    type_lang = langue_options[langue_affichee]
 
 intro = {
     "Endoscopie digestive": "Collez un compte rendu **d’endoscopie digestive** (gastroscopie, coloscopie…).",
@@ -75,11 +78,12 @@ if st.button("🧠 Générer la version vulgarisée"):
     else:
         with st.spinner("⏳ Analyse et vulgarisation en cours..."):
             try:
-                resultat = vulgariser_texte(texte_cr, type_cr)
+                resultat = vulgariser_texte(texte_cr, type_cr, type_lang)
                 st.success("✅ Résumé prêt !")
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

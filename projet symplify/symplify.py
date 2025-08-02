@@ -10,6 +10,12 @@ import os
 import streamlit as st
 #import ipywidgets as widgets
 
+st.set_page_config(
+    page_title="Vulgarisation Médicale",
+    page_icon="🧬",
+    layout="centered",
+)
+
 # Étape 3 : Configurer la clé API OpenAI
 client = OpenAI(api_key = st.secrets["OPENAI_API_KEY"]) # 🔒 Remplacez par votre clé API personnelle
 
@@ -38,10 +44,13 @@ st.title("🧪 Vulgarisation de comptes rendus médicaux")
 
 st.markdown("Collez un compte rendu **d'endoscopie digestive** ou **d'imagerie médicale**.")
 
-type_cr = st.selectbox("Type de compte rendu :", ["Endoscopie digestive", "Imagerie médicale"])
+with st.sidebar:
+    st.markdown("## ⚙️ Paramètres")
+    type_cr = st.selectbox("Type de compte rendu :", ["Endoscopie digestive", "Imagerie médicale"])
+
 texte_cr = st.text_area("Compte rendu médical :", height=300)
 
-if st.button("Générer la version vulgarisée"):
+if st.button("🧠 Générer la version vulgarisée"):
     if texte_cr.strip() == "":
         st.warning("Veuillez coller un texte médical.")
     else:
@@ -52,6 +61,7 @@ if st.button("Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

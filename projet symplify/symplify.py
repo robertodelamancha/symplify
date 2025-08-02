@@ -58,6 +58,7 @@ with st.sidebar:
     }
     langue_affichee = st.selectbox("Langue de vulgarisation :", list(langue_options.keys()))
     type_lang = langue_options[langue_affichee]
+    st.write("{type_lang}")
 
 intro = {
     "Endoscopie digestive": "Collez un compte rendu **d’endoscopie digestive** (gastroscopie, coloscopie…).",
@@ -78,6 +79,7 @@ if st.button("🧠 Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

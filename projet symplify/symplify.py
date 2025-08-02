@@ -8,7 +8,6 @@
 import openai
 import os
 import streamlit as st
-from IPython.display import display, HTML
 import ipywidgets as widgets
 
 # Étape 3 : Configurer la clé API OpenAI
@@ -53,3 +52,4 @@ if st.button("Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+

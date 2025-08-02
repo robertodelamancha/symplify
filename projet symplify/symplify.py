@@ -25,7 +25,7 @@ def get_instruction(langue):
 
 def vulgariser_texte(texte_brut, contexte,langue):
     traduction = get_instruction(langue)
-        system_prompt = (
+    system_prompt = (
         f"Tu es un assistant médical expert en gastro-entérologie et en radiologie."
         f" Ton objectif est de vulgariser un compte rendu médical technique pour le rendre clair, compréhensible et rassurant pour un patient."
         f" Le texte provient d’un rapport de {contexte}."
@@ -77,6 +77,7 @@ if st.button("🧠 Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

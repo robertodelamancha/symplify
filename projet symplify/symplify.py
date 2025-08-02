@@ -21,11 +21,27 @@ client = OpenAI(api_key = st.secrets["OPENAI_API_KEY"]) # 🔒 Remplacez par vot
 
 # Étape 4 : Fonction de génération du résumé avec GPT
 
+with st.sidebar:
+    st.markdown("## ⚙️ Paramètres")
+    type_cr = st.selectbox("Type de compte rendu :", ["Endoscopie digestive", "Imagerie médicale"])
+    type_lang = st.selectbox("Langue de vulgarisation :", ["Français", "anglais", "Arabe"])
+
+def get_instruction(langue):
+    if langue == "Anglais":
+        return "Then, translate the explanation into clear, simple English suitable for a patient."
+    elif langue == "Espagnol":
+        return "Luego, traduce la explicación al español claro y comprensible para un paciente."
+    else:
+        return ""  # Français = pas de traduction
+
+traduction = get_instruction(type_langue)
+
 def vulgariser_texte(texte_brut, contexte):
     system_prompt = (
         "Tu es un assistant médical expert en gastro-entérologie et en radiologie."
         " Ton objectif est de vulgariser un compte rendu médical technique pour le rendre clair, compréhensible et rassurant pour un patient."
         " Le texte provient d’un rapport de {contexte}."
+        "{traduction}"
     )
 
     response = client.chat.completions.create(
@@ -42,10 +58,7 @@ def vulgariser_texte(texte_brut, contexte):
 # 🎨 Interface Streamlit
 st.title("🧪 Vulgarisation de comptes rendus médicaux")
 
-with st.sidebar:
-    st.markdown("## ⚙️ Paramètres")
-    type_cr = st.selectbox("Type de compte rendu :", ["Endoscopie digestive", "Imagerie médicale"])
-    type_lang = st.selectbox("Langue de vulgarisation :", ["Français", "anglais", "Arabe"])
+
 
 
 intro = {
@@ -67,6 +80,7 @@ if st.button("🧠 Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

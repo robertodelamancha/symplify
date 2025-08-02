@@ -45,7 +45,7 @@ st.title("🧪 Vulgarisation de comptes rendus médicaux")
 with st.sidebar:
     st.markdown("## ⚙️ Paramètres")
     type_cr = st.selectbox("Type de compte rendu :", ["Endoscopie digestive", "Imagerie médicale"])
-    type_lang = st.selectbox("Langue de vulgarisation :, ["Français", "anglais", "Arabe"])
+    type_lang = st.selectbox("Langue de vulgarisation :", ["Français", "anglais", "Arabe"])
 
 
 intro = {
@@ -67,6 +67,7 @@ if st.button("🧠 Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

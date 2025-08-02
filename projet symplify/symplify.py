@@ -42,7 +42,11 @@ def vulgariser_texte(texte_brut, contexte):
 # 🎨 Interface Streamlit
 st.title("🧪 Vulgarisation de comptes rendus médicaux")
 
-st.markdown("Collez un compte rendu **d'endoscopie digestive** ou **d'imagerie médicale**.")
+intro = {
+    "Endoscopie digestive": "Collez un compte rendu **d’endoscopie digestive** (gastroscopie, coloscopie…).",
+    "Imagerie médicale": "Collez un compte rendu **d’imagerie médicale** (IRM, scanner, échographie…)."
+}
+st.markdown(f"📝 {intro[type_cr]}")
 
 with st.sidebar:
     st.markdown("## ⚙️ Paramètres")
@@ -61,6 +65,7 @@ if st.button("🧠 Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

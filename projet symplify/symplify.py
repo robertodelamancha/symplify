@@ -12,7 +12,7 @@ from IPython.display import display, HTML
 import ipywidgets as widgets
 
 # Étape 3 : Configurer la clé API OpenAI
-client = "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"  # 🔒 Remplacez par votre clé API personnelle
+client = st.secrets["OPENAI_API_KEY"] # 🔒 Remplacez par votre clé API personnelle
 
 # Étape 4 : Fonction de génération du résumé avec GPT
 

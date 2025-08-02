@@ -5,19 +5,19 @@
 #!pip install streamlit
 
 # Étape 2 : Importer les bibliothèques
-import openai
+from openai import OpenAI
 import os
 import streamlit as st
 #import ipywidgets as widgets
 
 # Étape 3 : Configurer la clé API OpenAI
-client = st.secrets["OPENAI_API_KEY"] # 🔒 Remplacez par votre clé API personnelle
+client = OpenAI(st.secrets["OPENAI_API_KEY"]) # 🔒 Remplacez par votre clé API personnelle
 
 # Étape 4 : Fonction de génération du résumé avec GPT
 
 def vulgariser_texte(texte_brut, contexte):
     system_prompt = (
-        "Tu es un assistant médical expert en gastro-entérologie et en imagerie."
+        "Tu es un assistant médical expert en gastro-entérologie et en radiologie."
         " Ton objectif est de vulgariser un compte rendu médical technique pour le rendre clair, compréhensible et rassurant pour un patient."
         " Le texte provient d’un rapport de {contexte}."
     )
@@ -52,5 +52,6 @@ if st.button("Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 

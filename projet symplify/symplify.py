@@ -16,9 +16,9 @@ client = OpenAI(api_key = st.secrets["OPENAI_API_KEY"]) # 🔒 Remplacez par vot
 # Étape 4 : Fonction de génération du résumé avec GPT
 
 def get_instruction(langue):
-    if langue == "Anglais":
+    if langue == "en":
         return "Then, translate the explanation into clear, simple English suitable for a patient."
-    elif langue == "Espagnol":
+    elif langue == "ar":
         return "ثم ترجم الشرح إلى العربية المبسطة والواضحة والمناسبة للمريض."
     else:
         return ""  # Français = pas de traduction
@@ -52,9 +52,9 @@ with st.sidebar:
     type_cr = st.selectbox("Type de compte rendu :", ["Endoscopie digestive", "Imagerie médicale"])
     
     langue_options = {
-        "Français": "Français",
-        "English": "Anglais",
-        "العربية": "Arabe"
+    "Français": "fr",
+    "English": "en",
+    "العربية": "ar"
     }
     langue_affichee = st.selectbox("Langue de vulgarisation :", list(langue_options.keys()))
     type_lang = langue_options[langue_affichee]
@@ -79,6 +79,7 @@ if st.button("🧠 Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

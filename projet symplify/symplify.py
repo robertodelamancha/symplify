@@ -17,9 +17,9 @@ client = OpenAI(api_key = st.secrets["OPENAI_API_KEY"]) # 🔒 Remplacez par vot
 
 def get_instruction(langue):
     if langue == "en":
-        return "Then, translate the explanation into clear, simple English suitable for a patient."
+        return "ton rapport vulgarisé doit être fait en anglais"
     elif langue == "ar":
-        return "ثم ترجم الشرح إلى العربية المبسطة والواضحة والمناسبة للمريض."
+        return "ton rapport vulgarisé doit être fait en arabe"
     else:
         return ""  # Français = pas de traduction
 
@@ -77,6 +77,7 @@ if st.button("🧠 Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

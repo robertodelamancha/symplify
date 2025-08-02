@@ -1,10 +1,4 @@
-# 📘 Notebok Colab - Vulgarisation CR Endoscopie & Imagerie
-
-# Étape 1 : Installer les bibliothèques nécessaires (si ce n'est pas déjà fait)
-#!pip install openai
-#!pip install streamlit
-
-# Étape 2 : Importer les bibliothèques
+# Importer les bibliothèques
 from openai import OpenAI
 import os
 import streamlit as st
@@ -83,6 +77,7 @@ if st.button("🧠 Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

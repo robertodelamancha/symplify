@@ -11,7 +11,7 @@ import streamlit as st
 #import ipywidgets as widgets
 
 # Étape 3 : Configurer la clé API OpenAI
-client = OpenAI(st.secrets["OPENAI_API_KEY"]) # 🔒 Remplacez par votre clé API personnelle
+client = OpenAI(api_key = st.secrets["OPENAI_API_KEY"]) # 🔒 Remplacez par votre clé API personnelle
 
 # Étape 4 : Fonction de génération du résumé avec GPT
 
@@ -52,6 +52,7 @@ if st.button("Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 

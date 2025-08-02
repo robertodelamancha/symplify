@@ -13,7 +13,7 @@ import streamlit as st
 st.set_page_config(
     page_title="Vulgarisation Médicale",
     page_icon="🧬",
-    layout="centered",
+    layout="wide",
 )
 
 # Étape 3 : Configurer la clé API OpenAI
@@ -61,6 +61,7 @@ if st.button("🧠 Générer la version vulgarisée"):
                 st.markdown(f"### 🩺 Résultat :\n\n{resultat}")
             except Exception as e:
                 st.error(f"❌ Erreur : {e}")
+
 
 
 
